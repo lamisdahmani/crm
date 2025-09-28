@@ -162,11 +162,11 @@ export const themeSettings = (mode) => {
             },
             background: {
               default: colors.primary[100], // Clean white background
-              paper: "#ffffff",
+              paper: colors.primary[100],
             },
             text: {
-              primary: colors.grey[900],
-              secondary: colors.grey[700],
+              primary: colors.grey[100],
+              secondary: colors.grey[200],
             },
           }),
     },
@@ -213,7 +213,7 @@ export const ColorModeContext = createContext({
 })
 
 export const useMode = () => {
-  const [mode, setMode] = useState("light") // Default to light mode to match UI
+  const [mode, setMode] = useState("light") 
 
   const colorMode = useMemo(
     () => ({

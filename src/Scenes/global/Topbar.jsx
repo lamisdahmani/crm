@@ -79,11 +79,11 @@ const Topbar = ({ setIsSidebar }) => {
       "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
     ];
     
+    const dayNames = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+    
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1; // Adjust for Monday start
-    
-    const dayNames = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+    const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1; 
     
     const renderCalendarDays = () => {
       const days = [];
@@ -157,7 +157,7 @@ const Topbar = ({ setIsSidebar }) => {
             <IconButton size="small" onClick={handlePreviousMonth}>
               <ChevronLeftIcon />
             </IconButton>
-            <Typography variant="h6" sx={{ mx: 1, minWidth: 100, textAlign: "center" }}>
+           <Typography variant="h6" sx={{ mx: 1, minWidth: 60, textAlign: "center" }}>
               {monthNames[month]}
             </Typography>
             <IconButton size="small" onClick={handleNextMonth}>
@@ -285,9 +285,6 @@ const Topbar = ({ setIsSidebar }) => {
         </IconButton>
         <IconButton>
           <NotificationsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon />
         </IconButton>
         
         {/* User section with dropdown */}

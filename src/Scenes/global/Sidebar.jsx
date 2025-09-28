@@ -56,7 +56,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
       sx={{
         display: isSidebar ? "block" : "none",
         "& .pro-sidebar-inner": {
-          background: " #F8FAFC !important",
+          background: "{colors.primary[400]}",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -109,11 +109,11 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
                 MenuProps={{
                   PaperProps: {
                     sx: {
-                      backgroundColor: '#ffffff',        // Dropdown background
+                      backgroundColor: colors.primary[400],       // Dropdown background
                       '& .MuiMenuItem-root': {
-                        color: '#333333',               // Menu item text color
+                        color: colors.grey[100],               // Menu item text color
                         '&:hover': {
-                          backgroundColor: '#f0f0f0'    // Hover background
+                          backgroundColor: colors.grey[700],    // Hover background
                         },
                         '&.Mui-selected': {
                           backgroundColor: '#e53e3e',    // Selected item background
@@ -141,7 +141,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
         {/* SEARCH BAR */}
         <Box
           display="flex"
-          border="1px solid #ccc"
+          border={`1px solid $colors.grey[700]`}
           borderRadius="3px"
           mx="20px"
           mb="px"
@@ -182,7 +182,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
 
             <Item
               title="Page Clients"
-              to="/Page Clients"
+              to="/Page-Clients"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
