@@ -1,5 +1,3 @@
-// src/data/MockData.js
-
 export const mockKPIData = [
   {
     id: 1,
@@ -108,3 +106,162 @@ export const mockFilterData = {
     "Station Constantine Est", "Station Annaba Nord"
   ]
 };
+
+// B2C Data - Clients Fidèles
+export const clientsData = [
+  {
+    id: 1,
+    name: "Amina Benaissa",
+    commandes: 45,
+    montant: "2500 DA"
+  },
+  {
+    id: 2,
+    name: "Karim Meziane",
+    commandes: 38,
+    montant: "1800 DA"
+  },
+  {
+    id: 3,
+    name: "Fatima Cherif",
+    commandes: 42,
+    montant: "2200 DA"
+  }
+];
+
+// B2C Data - Clients Dormants
+export const clientsDormantsData = [
+  {
+    id: 1,
+    name: "Yacine Boudiaf",
+    derniereCommande: "2023-09-15",
+    joursInactif: 128
+  },
+  {
+    id: 2,
+    name: "Samira Khelifi",
+    derniereCommande: "2023-08-22",
+    joursInactif: 152
+  },
+  {
+    id: 3,
+    name: "Rachid Mammeri",
+    derniereCommande: "2023-10-03",
+    joursInactif: 110
+  }
+];
+
+// B2C Data - Panier Moyen & Fréquence
+export const panierFrequenceData = [
+  { month: "Jan", panierMoyen: 1800, frequence: 2.3 },
+  { month: "Fév", panierMoyen: 1900, frequence: 2.5 },
+  { month: "Mar", panierMoyen: 2100, frequence: 2.7 },
+  { month: "Avr", panierMoyen: 2000, frequence: 2.6 },
+  { month: "Mai", panierMoyen: 2200, frequence: 2.9 },
+  { month: "Jun", panierMoyen: 2400, frequence: 3.2 }
+];
+
+// B2B Data - Top Entreprises
+export const topEntreprises = [
+  {
+    id: 1,
+    name: "Condor Electronics",
+    rank: 1,
+    value: "188 000 DA",
+    month: "Juin 2024"
+  },
+  {
+    id: 2,
+    name: "Samsung Algeria",
+    rank: 2,
+    value: "118 000 DA",
+    month: "Juin 2024"
+  },
+  {
+    id: 3,
+    name: "LG Electronics",
+    rank: 3,
+    value: "98 000 DA",
+    month: "Juin 2024"
+  },
+  {
+    id: 4,
+    name: "Haier Algeria",
+    rank: 4,
+    value: "84 000 DA",
+    month: "Juin 2024"
+  }
+];
+
+// B2B Data - Evolution Valeur Mensuelle
+export const evmData = [
+  { month: "Jan", value: 340000 },
+  { month: "Fév", value: 360000 },
+  { month: "Mar", value: 390000 },
+  { month: "Avr", value: 420000 },
+  { month: "Mai", value: 450000 },
+  { month: "Jun", value: 480000 }
+];
+
+//Carte de Chaleur des Envois C2C
+export const c2cChartData = [
+  { month: "Alger", value: 12456 },
+  { month: "Oran", value: 8934 },
+  { month: "Constantine", value: 6789 },
+  { month: "Annaba", value: 4567 },
+  { month: "Blida", value: 3892 },
+  { month: "Sétif", value: 3456 },
+  { month: "Tlemcen", value: 2890 },
+  { month: "Béjaïa", value: 2567 },
+];
+
+ export const c2cCards = [
+  { 
+    name: "Alger", 
+    envois: 12456, 
+    intensite: 100, 
+    niveau: "Très élevée" 
+  },
+ { 
+    name: "Oran", 
+    envois: 8934, 
+    intensite: 72, 
+    niveau: "Élevée" 
+  },
+  { 
+    name: "Constantine", 
+    envois: 6789, 
+    intensite: 55, 
+    niveau: "Moyenne" 
+  },
+  { 
+    name: "Annaba", 
+    envois: 4567, 
+    intensite: 37, 
+    niveau: "Faible" 
+  },
+  { 
+    name: "Blida", 
+    envois: 3892, 
+    intensite: 31, 
+    niveau: "Faible" 
+  },
+  { 
+    name: "Sétif", 
+    envois: 3456, 
+    intensite: 28, 
+    niveau: "Faible" 
+  },
+  { 
+    name: "Tlemcen", 
+    envois: 2890, 
+    intensite: 23, 
+    niveau: "Faible" 
+  },
+   { 
+    name: "Béjaïa", 
+    envois: 2567, 
+    intensite: 21, 
+    niveau: "Faible" 
+  },
+];

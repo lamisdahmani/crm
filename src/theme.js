@@ -20,7 +20,7 @@ export const tokens = (mode) => ({
           100: "#2d3748",
           200: "#4a5568",
           300: "#718096",
-          400: "#a0aec0",
+          400: "#1a202c",
           500: "#1a202c", // Dark background
           600: "#2d3748",
           700: "#4a5568",
@@ -62,34 +62,35 @@ export const tokens = (mode) => ({
         },
       }
     : {
+        // LIGHT MODE - Fixed colors
         grey: {
-          100: "#212529",
-          200: "#343a40",
-          300: "#495057",
-          400: "#6c757d",
-          500: "#adb5bd",
-          600: "#ced4da",
-          700: "#dee2e6",
-          800: "#e9ecef",
-          900: "#f8f9fa",
+          100: "#141414",      // Darkest - for main text
+          200: "#292929",
+          300: "#3d3d3d",
+          400: "#525252",
+          500: "#6c757d",
+          600: "#858585",
+          700: "#a3a3a3",
+          800: "#d4d4d4",
+          900: "#f5f5f5",      // Lightest - for backgrounds
         },
         primary: {
-          100: "#ffffff", // Clean white background
-          200: "#f8f9fa",
-          300: "#e9ecef",
-          400: "#dee2e6",
-          500: "#ffffff",
-          600: "#f8f9fa",
-          700: "#495057",
-          800: "#343a40",
-          900: "#212529",
+          100: "#fafafa",      // Almost white for cards
+          200: "#f5f5f5",
+          300: "#e5e5e5",
+          400: "#d4d4d4",
+          500: "#ffffff",      // Pure white background
+          600: "#fafafa",
+          700: "#f5f5f5",
+          800: "#e5e5e5",
+          900: "#d4d4d4",
         },
         redAccent: {
           100: "#63171b",
           200: "#822727",
           300: "#9b2c2c",
           400: "#c53030",
-          500: "#e53e3e", // Main YALIDINE red
+          500: "#e53e3e",      // Main YALIDINE red
           600: "#f56565",
           700: "#fc8181",
           800: "#feb2b2",
@@ -149,6 +150,7 @@ export const themeSettings = (mode) => {
             },
           }
         : {
+            // LIGHT MODE - Fixed palette
             primary: {
               main: colors.redAccent[500], // YALIDINE red as primary
             },
@@ -156,17 +158,17 @@ export const themeSettings = (mode) => {
               main: colors.blueAccent[500],
             },
             neutral: {
-              dark: colors.grey[700],
+              dark: colors.grey[300],
               main: colors.grey[500],
-              light: colors.grey[100],
+              light: colors.grey[700],
             },
             background: {
-              default: colors.primary[100], // Clean white background
-              paper: colors.primary[100],
+              default: "#f5f5f5",           // Light grey background
+              paper: "#ffffff",              // White paper/cards
             },
             text: {
-              primary: colors.grey[100],
-              secondary: colors.grey[200],
+              primary: colors.grey[100],     // Dark text
+              secondary: colors.grey[300],   // Medium dark for secondary text
             },
           }),
     },

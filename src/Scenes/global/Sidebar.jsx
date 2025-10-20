@@ -56,7 +56,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
       sx={{
         display: isSidebar ? "block" : "none",
         "& .pro-sidebar-inner": {
-          background: "{colors.primary[400]}",
+          background: `${theme.palette.mode === "dark" ? colors.primary[400] : "#ffffff"} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -75,7 +75,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
     >
       <ProSidebar>
         {/* COMPANY HEADER */}
-        <Box mb="2àpx" p="20px">
+        <Box mb="20px" p="20px">
           {/* Logo and Company Name */}
           <Box display="flex" alignItems="center" mb="15px">
             <img
@@ -89,37 +89,41 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
 
           {/* User Profile Section */}
           <Box>
-            <Typography variant="body2" color={colors.grey[300]} mb="px">
+            <Typography variant="body2" color={colors.grey[300]} mb="8px">
               Profil Utilisateur
             </Typography>
             <FormControl size="small" sx={{ width: '220px' }}>
               <Select
                 value={userRole}
-                onChange={(e) => setUserRole(e.target.value)} // Now uses prop function
+                onChange={(e) => setUserRole(e.target.value)}
                 sx={{
-                  color: colors.grey[300],
+                  color: colors.grey[100],
                   height: '30px',
+                  backgroundColor: theme.palette.mode === "dark" ? colors.primary[500] : "#f5f5f5",
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#adb5bd',
+                    borderColor: colors.grey[400],
                   },
                   '& .MuiSvgIcon-root': {
                     color: colors.grey[100],
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: colors.grey[300],
                   },
                 }}
                 MenuProps={{
                   PaperProps: {
                     sx: {
-                      backgroundColor: colors.primary[400],       // Dropdown background
+                      backgroundColor: theme.palette.mode === "dark" ? colors.primary[400] : "#ffffff",
                       '& .MuiMenuItem-root': {
-                        color: colors.grey[100],               // Menu item text color
+                        color: colors.grey[100],
                         '&:hover': {
-                          backgroundColor: colors.grey[700],    // Hover background
+                          backgroundColor: theme.palette.mode === "dark" ? colors.grey[700] : colors.grey[800],
                         },
                         '&.Mui-selected': {
-                          backgroundColor: '#e53e3e',    // Selected item background
-                          color: '#ffffff',              // Selected item text color
+                          backgroundColor: '#e53e3e',
+                          color: '#ffffff',
                           '&:hover': {
-                            backgroundColor: '#d73027'   // Selected item hover
+                            backgroundColor: '#d73027'
                           }
                         }
                       }
@@ -141,18 +145,20 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
         {/* SEARCH BAR */}
         <Box
           display="flex"
-          border={`1px solid $colors.grey[700]`}
+          backgroundColor={theme.palette.mode === "dark" ? colors.primary[500] : "#f5f5f5"}
+          border={`1px solid ${colors.grey[700]}`}
           borderRadius="3px"
           mx="20px"
-          mb="px"
+          mb="20px"
         >
           <IconButton type="button" sx={{ p: 1 }}>
-            <SearchIcon />
+            <SearchIcon sx={{ color: colors.grey[300] }} />
           </IconButton>
           <InputBase 
             sx={{ 
               ml: 1, 
               flex: 1,
+              color: colors.grey[100],
               '& .MuiInputBase-input::placeholder': {
                 color: colors.grey[400],
                 opacity: 1
@@ -190,7 +196,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
 
             <Item
               title="Dashboard B2B"
-              to="/Dashboard B2B"
+              to="/dashboard-b2b"
               icon={<BusinessOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -198,7 +204,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
 
             <Item
               title="Dashboard B2C"
-              to="/Dashboard B2C"
+              to="/dashboard-b2c"
               icon={<ShoppingCartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -206,7 +212,7 @@ const Sidebar = ({ isSidebar, userRole, setUserRole }) => {
 
             <Item
               title="Dashboard C2C"
-              to="/Dashboard C2C"
+              to="/dasboard-c2c"
               icon={<PersonAddOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

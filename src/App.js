@@ -4,9 +4,9 @@ import Topbar from "./Scenes/global/Topbar";
 import Sidebar from "./Scenes/global/Sidebar";
 import Dashboard from "./Scenes/dashboard";
 import PageClients from "./Scenes/PageClients";
-//import B2B from "./Scenes/ B2B";
-//import B2C from "./Scenes/B2C";
-//import C2C from "./Scenes/C2C";
+import B2B from "./Scenes/B2B";
+import B2C from "./Scenes/B2C";
+import C2C from "./Scenes/C2C";
 //import Segmentation from "./Scenes/Segmentation";
 //import Rapport from "./Scenes/Rapport";
 //import Analyse from "./Scenes/Analyse";
@@ -34,9 +34,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard userRole={userRole} />} /> 
               <Route path="/page-Clients" element={<PageClients />} />
-              {/*<Route path="/B2B" element={<B2B />} />*/}
-              {/*<Route path="/B2C" element={<B2C />} />*/}
-              {/*<Route path="/C2C" element={<C2C />} />*/}
+              <Route path="/dashboard-b2b" element={<B2B />} />
+              <Route path="/dashboard-b2c" element={<B2C />} />
+              <Route path="/dasboard-c2c" element={<C2C userRole={userRole}/>} />
               {/*<Route path="/Segmentation" element={<Segmentation />} />*/}
               {/*<Route path="/Rapport" element={<Rapport />} />*/}
               {/* <Route path="/Analyse" element={<Analyse />} />*/}
