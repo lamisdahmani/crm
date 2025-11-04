@@ -226,7 +226,7 @@ const Dashboard = ({ userRole = "Responsable Commercial" }) => {
             variant="contained"
             onClick={handleExport}
             sx={{
-              backgroundColor: colors.redAccent[600],
+              backgroundColor: colors.redAccent[500],
               color: "white",
               textTransform: "none",
               fontSize: "14px",
