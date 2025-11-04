@@ -11,24 +11,21 @@ import { tokens } from "../theme";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const ClientsFilters = ({ userRole }) => {
+const ClientsFilters = ({ userRole, onFilterChange }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // États pour les filtres
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedWilaya, setSelectedWilaya] = useState("Toutes");
   const [selectedStation, setSelectedStation] = useState("Toutes stations");
   const [selectedSegment, setSelectedSegment] = useState("Tous segments");
   const [selectedType, setSelectedType] = useState("Tous types");
 
-  // Données mock pour les dropdowns
   const wilayas = ["Toutes", "Alger", "Oran", "Constantine", "Annaba", "Blida", "Sétif"];
-  const stations = ["Toutes stations", "Station A", "Station B", "Station C"];
-  const segments = ["Tous segments", "Gold", "Silver", "Bronze"];
+  const stations = ["Toutes stations", "Station Alger Centre", "Station Oran Ouest", "Station Constantine Est", "Station Blida Sud"];
+  const segments = ["Tous segments", "Premium", "Standard", "À surveiller"];
   const types = ["Tous types", "B2B", "B2C", "C2C"];
 
-  // Déterminer quels filtres afficher selon le rôle
   const getVisibleFilters = (role) => {
     switch (role) {
       case "Responsable Commercial":
@@ -108,6 +105,18 @@ const ClientsFilters = ({ userRole }) => {
     }
   };
 
+  const handleFilterChange = () => {
+    if (onFilterChange) {
+      onFilterChange({
+        search: searchQuery,
+        wilaya: selectedWilaya,
+        station: selectedStation,
+        segment: selectedSegment,
+        type: selectedType
+      });
+    }
+  };
+
   return (
     <Box 
       display="flex" 
@@ -121,7 +130,6 @@ const ClientsFilters = ({ userRole }) => {
         mb: "20px"
       }}
     >
-      {/* Search Bar - Prend toute la largeur disponible */}
       <Box
         display="flex"
         alignItems="center"
@@ -137,7 +145,10 @@ const ClientsFilters = ({ userRole }) => {
         <InputBase
           placeholder="Rechercher un client..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            handleFilterChange();
+          }}
           sx={{
             ml: 1,
             flex: 1,
@@ -151,12 +162,14 @@ const ClientsFilters = ({ userRole }) => {
         />
       </Box>
 
-      {/* Wilaya Dropdown - Responsable & Lead Commercial */}
       {visibleFilters.showWilaya && (
         <FormControl>
           <Select
             value={selectedWilaya}
-            onChange={(e) => setSelectedWilaya(e.target.value)}
+            onChange={(e) => {
+              setSelectedWilaya(e.target.value);
+              handleFilterChange();
+            }}
             displayEmpty
             IconComponent={KeyboardArrowDownIcon}
             sx={dropdownStyles}
@@ -171,12 +184,14 @@ const ClientsFilters = ({ userRole }) => {
         </FormControl>
       )}
 
-      {/* Station Dropdown - Responsable & Chef Commercial */}
       {visibleFilters.showStation && (
         <FormControl>
           <Select
             value={selectedStation}
-            onChange={(e) => setSelectedStation(e.target.value)}
+            onChange={(e) => {
+              setSelectedStation(e.target.value);
+              handleFilterChange();
+            }}
             displayEmpty
             IconComponent={KeyboardArrowDownIcon}
             sx={dropdownStyles}
@@ -191,12 +206,14 @@ const ClientsFilters = ({ userRole }) => {
         </FormControl>
       )}
 
-      {/* Segment Dropdown - Tous les rôles */}
       {visibleFilters.showSegment && (
         <FormControl>
           <Select
             value={selectedSegment}
-            onChange={(e) => setSelectedSegment(e.target.value)}
+            onChange={(e) => {
+              setSelectedSegment(e.target.value);
+              handleFilterChange();
+            }}
             displayEmpty
             IconComponent={KeyboardArrowDownIcon}
             sx={dropdownStyles}
@@ -211,12 +228,14 @@ const ClientsFilters = ({ userRole }) => {
         </FormControl>
       )}
 
-      {/* Type Dropdown - Tous les rôles */}
       {visibleFilters.showType && (
         <FormControl>
           <Select
             value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
+            onChange={(e) => {
+              setSelectedType(e.target.value);
+              handleFilterChange();
+            }}
             displayEmpty
             IconComponent={KeyboardArrowDownIcon}
             sx={dropdownStyles}

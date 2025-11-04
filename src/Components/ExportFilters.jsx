@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme, FormControl, Select, MenuItem, Button } from "@mui/material";
-import { tokens } from "../theme";
+import { tokens } from "../scenes/theme";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { useState } from "react";
@@ -20,7 +20,7 @@ const ExportFilters = ({ segmentOptions, typeOptions, wilayaOptions, onExport })
       [filterName]: value,
     }));
   };
- 
+
   const handleExport = () => {
     if (onExport) {
       onExport(filters);
@@ -30,7 +30,7 @@ const ExportFilters = ({ segmentOptions, typeOptions, wilayaOptions, onExport })
   return (
     <Box
       sx={{
-        backgroundColor: colors.primary[100],
+        backgroundColor: colors.primary[400],
         borderRadius: "8px",
         padding: "24px",
       }}
@@ -223,7 +223,7 @@ const ExportFilters = ({ segmentOptions, typeOptions, wilayaOptions, onExport })
           variant="contained"
           onClick={handleExport}
           sx={{
-            backgroundColor: colors.redAccent[500],
+            backgroundColor: colors.redAccent[600],
             color: "white",
             textTransform: "none",
             fontSize: "14px",

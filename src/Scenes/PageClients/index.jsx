@@ -3,31 +3,27 @@ import { Box, useTheme, Button } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../Components/Header";
 import ClientsFilters from "../../Components/ClientsFilters";
+import TableClient from "../../Components/TableClient";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 
-const PageClients = ({ userRole }) => {
+const PageClients = ({ userRole = "Responsable Commercial" }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [filters, setFilters] = useState({});
 
-  const getRoleAccessText = (role) => {
-    switch (role) {
-      case "Responsable Commercial":
-        return "Toutes les données";
-      case "Lead Commercial":
-        return "Région/Wilaya";
-      case "Chef Commercial":
-        return "Station";
-      default:
-        return "Toutes les données";
-    }
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    console.log("Filters changed:", newFilters);
   };
 
   const handleMonthlyDownload = () => {
     console.log("Téléchargement mensuel...");
+    // Add your download logic here
   };
 
   const handleAnnualDownload = () => {
     console.log("Téléchargement annuel...");
+    // Add your download logic here
   };
 
   return (
@@ -81,9 +77,13 @@ const PageClients = ({ userRole }) => {
       </Box>
 
       {/* FILTERS COMPONENT */}
-      <ClientsFilters userRole={userRole} />
+      <ClientsFilters 
+        userRole={userRole} 
+        onFilterChange={handleFilterChange}
+      />
 
-      {/* TODO: Add your ClientsTable component here */}
+      {/* CLIENTS TABLE */}
+      <ClientsTable filters={filters} />
     </Box>
   );
 };
