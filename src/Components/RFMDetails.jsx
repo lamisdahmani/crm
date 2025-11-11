@@ -81,7 +81,7 @@ const RFMDetails = ({ data, colors }) => {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             sx={{
-              backgroundColor: colors.primary[400],
+              backgroundColor: colors.primary[100],
               color: colors.grey[100],
               height: '40px',
               '& .MuiOutlinedInput-notchedOutline': {

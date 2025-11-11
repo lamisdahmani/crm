@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme, FormControl, Select, MenuItem, Button } from "@mui/material";
-import { tokens } from "../scenes/theme";
+import { tokens } from "../theme";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const ExportFilters = ({ segmentOptions, typeOptions, wilayaOptions, onExport })
   return (
     <Box
       sx={{
-        backgroundColor: colors.primary[400],
+        backgroundColor: colors.primary[100],
         borderRadius: "8px",
         padding: "24px",
       }}

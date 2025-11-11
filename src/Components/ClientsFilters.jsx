@@ -65,7 +65,7 @@ const ClientsFilters = ({ userRole, onFilterChange }) => {
     backgroundColor: colors.grey[900],
     color: colors.grey[100],
     fontSize: "14px",
-    minWidth: "180px",
+    width: "200px",
     height: "50px",
     borderRadius: "4px",
     '& .MuiOutlinedInput-notchedOutline': {
@@ -105,23 +105,43 @@ const ClientsFilters = ({ userRole, onFilterChange }) => {
     }
   };
 
-  const handleFilterChange = () => {
+  const handleChange = (field, value) => {
+    const newFilters = {
+      search: searchQuery,
+      wilaya: selectedWilaya,
+      station: selectedStation,
+      segment: selectedSegment,
+      type: selectedType,
+      [field]: value
+    };
+
+    switch(field) {
+      case 'search':
+        setSearchQuery(value);
+        break;
+      case 'wilaya':
+        setSelectedWilaya(value);
+        break;
+      case 'station':
+        setSelectedStation(value);
+        break;
+      case 'segment':
+        setSelectedSegment(value);
+        break;
+      case 'type':
+        setSelectedType(value);
+        break;
+      default:
+        break;
+    }
+
     if (onFilterChange) {
-      onFilterChange({
-        search: searchQuery,
-        wilaya: selectedWilaya,
-        station: selectedStation,
-        segment: selectedSegment,
-        type: selectedType
-      });
+      onFilterChange(newFilters);
     }
   };
 
   return (
     <Box 
-      display="flex" 
-      alignItems="center" 
-      gap="15px"
       sx={{
         backgroundColor: colors.grey[900],
         padding: "20px 25px",
@@ -130,125 +150,135 @@ const ClientsFilters = ({ userRole, onFilterChange }) => {
         mb: "20px"
       }}
     >
-      <Box
-        display="flex"
-        alignItems="center"
-        backgroundColor={colors.grey[900]}
-        border={`1px solid ${colors.grey[700]}`}
-        borderRadius="4px"
-        sx={{ 
-          flex: 1,
-          height: "50px"
+      <Box 
+        display="flex" 
+        alignItems="center" 
+        gap="15px"
+        flexWrap="nowrap"
+        sx={{
+          overflowX: "auto",
+          "&::-webkit-scrollbar": {
+            height: "8px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: colors.grey[800],
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: colors.grey[600],
+            borderRadius: "4px",
+          },
         }}
       >
-        <SearchIcon sx={{ ml: 2, color: colors.grey[300] }} />
-        <InputBase
-          placeholder="Rechercher un client..."
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-            handleFilterChange();
+        {/* Search Bar */}
+        <Box
+          display="flex"
+          alignItems="center"
+          backgroundColor={colors.grey[900]}
+          border={`1px solid ${colors.grey[700]}`}
+          borderRadius="4px"
+          sx={{ 
+            minWidth: "300px",
+            height: "50px"
           }}
-          sx={{
-            ml: 1,
-            flex: 1,
-            color: colors.grey[100],
-            pr: 2,
-            '& input::placeholder': {
-              color: colors.grey[400],
-              opacity: 1
-            }
-          }}
-        />
+        >
+          <SearchIcon sx={{ ml: 2, color: colors.grey[300] }} />
+          <InputBase
+            placeholder="Rechercher un client..."
+            value={searchQuery}
+            onChange={(e) => handleChange('search', e.target.value)}
+            sx={{
+              ml: 1,
+              flex: 1,
+              color: colors.grey[100],
+              pr: 2,
+              '& input::placeholder': {
+                color: colors.grey[400],
+                opacity: 1
+              }
+            }}
+          />
+        </Box>
+
+        {/* Wilaya Filter */}
+        {visibleFilters.showWilaya && (
+          <FormControl sx={{ minWidth: "200px" }}>
+            <Select
+              value={selectedWilaya}
+              onChange={(e) => handleChange('wilaya', e.target.value)}
+              displayEmpty
+              IconComponent={KeyboardArrowDownIcon}
+              sx={dropdownStyles}
+              MenuProps={menuProps}
+            >
+              {wilayas.map((wilaya) => (
+                <MenuItem key={wilaya} value={wilaya}>
+                  {wilaya}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+
+        {/* Station Filter */}
+        {visibleFilters.showStation && (
+          <FormControl sx={{ minWidth: "200px" }}>
+            <Select
+              value={selectedStation}
+              onChange={(e) => handleChange('station', e.target.value)}
+              displayEmpty
+              IconComponent={KeyboardArrowDownIcon}
+              sx={dropdownStyles}
+              MenuProps={menuProps}
+            >
+              {stations.map((station) => (
+                <MenuItem key={station} value={station}>
+                  {station}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+
+        {/* Segment Filter */}
+        {visibleFilters.showSegment && (
+          <FormControl sx={{ minWidth: "200px" }}>
+            <Select
+              value={selectedSegment}
+              onChange={(e) => handleChange('segment', e.target.value)}
+              displayEmpty
+              IconComponent={KeyboardArrowDownIcon}
+              sx={dropdownStyles}
+              MenuProps={menuProps}
+            >
+              {segments.map((segment) => (
+                <MenuItem key={segment} value={segment}>
+                  {segment}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
+
+        {/* Type Filter */}
+        {visibleFilters.showType && (
+          <FormControl sx={{ minWidth: "200px" }}>
+            <Select
+              value={selectedType}
+              onChange={(e) => handleChange('type', e.target.value)}
+              displayEmpty
+              IconComponent={KeyboardArrowDownIcon}
+              sx={dropdownStyles}
+              MenuProps={menuProps}
+            >
+              {types.map((type) => (
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
       </Box>
-
-      {visibleFilters.showWilaya && (
-        <FormControl>
-          <Select
-            value={selectedWilaya}
-            onChange={(e) => {
-              setSelectedWilaya(e.target.value);
-              handleFilterChange();
-            }}
-            displayEmpty
-            IconComponent={KeyboardArrowDownIcon}
-            sx={dropdownStyles}
-            MenuProps={menuProps}
-          >
-            {wilayas.map((wilaya) => (
-              <MenuItem key={wilaya} value={wilaya}>
-                {wilaya}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      )}
-
-      {visibleFilters.showStation && (
-        <FormControl>
-          <Select
-            value={selectedStation}
-            onChange={(e) => {
-              setSelectedStation(e.target.value);
-              handleFilterChange();
-            }}
-            displayEmpty
-            IconComponent={KeyboardArrowDownIcon}
-            sx={dropdownStyles}
-            MenuProps={menuProps}
-          >
-            {stations.map((station) => (
-              <MenuItem key={station} value={station}>
-                {station}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      )}
-
-      {visibleFilters.showSegment && (
-        <FormControl>
-          <Select
-            value={selectedSegment}
-            onChange={(e) => {
-              setSelectedSegment(e.target.value);
-              handleFilterChange();
-            }}
-            displayEmpty
-            IconComponent={KeyboardArrowDownIcon}
-            sx={dropdownStyles}
-            MenuProps={menuProps}
-          >
-            {segments.map((segment) => (
-              <MenuItem key={segment} value={segment}>
-                {segment}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      )}
-
-      {visibleFilters.showType && (
-        <FormControl>
-          <Select
-            value={selectedType}
-            onChange={(e) => {
-              setSelectedType(e.target.value);
-              handleFilterChange();
-            }}
-            displayEmpty
-            IconComponent={KeyboardArrowDownIcon}
-            sx={dropdownStyles}
-            MenuProps={menuProps}
-          >
-            {types.map((type) => (
-              <MenuItem key={type} value={type}>
-                {type}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      )}
     </Box>
   );
 };

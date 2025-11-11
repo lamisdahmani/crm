@@ -83,7 +83,7 @@ const PageClients = ({ userRole = "Responsable Commercial" }) => {
       />
 
       {/* CLIENTS TABLE */}
-      <ClientsTable filters={filters} />
+      <TableClient filters={filters} />
     </Box>
   );
 };

@@ -1,7 +1,6 @@
-import { Box, useTheme, Typography, IconButton, Chip } from "@mui/material";
+import { Box, useTheme, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../theme";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import { mockClients } from "../data/MockData";
 
@@ -9,48 +8,140 @@ const TableClient = ({ filters }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const getChipColor = (segment) => {
+  const getSegmentStyle = (segment) => {
     switch (segment) {
       case "Premium":
-        return { backgroundColor: '#fef3c7', color: '#92400e' };
+        return { 
+          backgroundColor: '#fef3c7', 
+          color: '#92400e',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "Standard":
-        return { backgroundColor: '#dbeafe', color: '#1e3a8a' };
+        return { 
+          backgroundColor: '#dbeafe', 
+          color: '#1e3a8a',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "À surveiller":
-        return { backgroundColor: '#fee2e2', color: '#991b1b' };
+        return { 
+          backgroundColor: '#fee2e2', 
+          color: '#991b1b',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "Silver":
-        return { backgroundColor: '#f3f4f6', color: '#374151' };
+        return { 
+          backgroundColor: '#f3f4f6', 
+          color: '#374151',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "Bronze":
-        return { backgroundColor: '#fef3c7', color: '#78350f' };
+        return { 
+          backgroundColor: '#fef3c7', 
+          color: '#78350f',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       default:
-        return { backgroundColor: '#e5e7eb', color: '#1f2937' };
+        return { 
+          backgroundColor: '#e5e7eb', 
+          color: '#1f2937',
+          padding: '4px 12px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
     }
   };
 
-  const getTypeColor = (type) => {
+  const getTypeStyle = (type) => {
     switch (type) {
       case "B2B":
-        return { backgroundColor: '#fee2e2', color: '#991b1b' };
+        return { 
+          backgroundColor: '#fee2e2', 
+          color: '#991b1b',
+          padding: '4px 10px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "B2C":
-        return { backgroundColor: '#dbeafe', color: '#1e40af' };
+        return { 
+          backgroundColor: '#dbeafe', 
+          color: '#1e40af',
+          padding: '4px 10px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       case "C2C":
-        return { backgroundColor: '#dbeafe', color: '#1e40af' };
+        return { 
+          backgroundColor: '#dbeafe', 
+          color: '#1e40af',
+          padding: '4px 10px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
       default:
-        return { backgroundColor: '#f3f4f6', color: '#374151' };
+        return { 
+          backgroundColor: '#f3f4f6', 
+          color: '#374151',
+          padding: '4px 10px',
+          borderRadius: '4px',
+          fontWeight: '600',
+          fontSize: '12px',
+          display: 'inline-block'
+        };
     }
   };
 
   const columns = [
     {
-      field: "name",
+      field: "client",
       headerName: "Client",
-      flex: 1.2,
+      flex: 1,
       minWidth: 200,
       renderCell: (params) => (
         <Box>
-          <Typography color={colors.grey[100]} fontWeight="500" fontSize="14px">
+          <Typography 
+            sx={{ 
+              color: colors.grey[100], 
+              fontWeight: "500", 
+              fontSize: "14px",
+              mb: "2px"
+            }}
+          >
             {params.row.name}
           </Typography>
-          <Typography color={colors.grey[400]} fontSize="12px">
+          <Typography 
+            sx={{ 
+              color: colors.grey[400], 
+              fontSize: "12px" 
+            }}
+          >
             {params.row.clientId}
           </Typography>
         </Box>
@@ -60,103 +151,75 @@ const TableClient = ({ filters }) => {
       field: "type",
       headerName: "Type",
       width: 100,
-      renderCell: (params) => {
-        const typeColors = getTypeColor(params.value);
-        return (
-          <Chip
-            label={params.value}
-            size="small"
-            sx={{
-              ...typeColors,
-              fontWeight: "600",
-              fontSize: "11px",
-              borderRadius: "6px"
-            }}
-          />
-        );
-      }
+      renderCell: (params) => (
+        <Box sx={getTypeStyle(params.value)}>
+          {params.value}
+        </Box>
+      )
     },
     {
       field: "wilaya",
       headerName: "Wilaya",
-      width: 130
+      width: 150,
+      renderCell: (params) => (
+        <Typography sx={{ color: colors.grey[100], fontSize: "14px" }}>
+          {params.value}
+        </Typography>
+      )
     },
     {
       field: "station",
       headerName: "Station",
       flex: 1,
-      minWidth: 180
+      minWidth: 200,
+      renderCell: (params) => (
+        <Typography sx={{ color: colors.grey[100], fontSize: "14px" }}>
+          {params.value}
+        </Typography>
+      )
     },
     {
       field: "segmentCLV",
       headerName: "Segment CLV",
-      width: 140,
-      renderCell: (params) => {
-        const chipColors = getChipColor(params.value);
-        return (
-          <Chip
-            label={params.value}
-            size="small"
-            sx={{
-              ...chipColors,
-              fontWeight: "600",
-              fontSize: "11px",
-              borderRadius: "6px"
-            }}
-          />
-        );
-      }
+      width: 150,
+      renderCell: (params) => (
+        <Box sx={getSegmentStyle(params.value)}>
+          {params.value}
+        </Box>
+      )
     },
     {
       field: "segmentationRFM",
       headerName: "Segmentation RFM",
-      width: 160,
-      renderCell: (params) => {
-        const chipColors = getChipColor(params.value);
-        return (
-          <Chip
-            label={params.value}
-            size="small"
-            sx={{
-              ...chipColors,
-              fontWeight: "600",
-              fontSize: "11px",
-              borderRadius: "6px"
-            }}
-          />
-        );
-      }
+      width: 170,
+      renderCell: (params) => (
+        <Box sx={getSegmentStyle(params.value)}>
+          {params.value}
+        </Box>
+      )
     },
     {
       field: "historiqueEnvoi",
       headerName: "Historique Envoi",
       width: 150,
-      type: "number"
-    },
-    {
-      field: "clvDA",
-      headerName: "CLV (DA)",
-      width: 130,
-      type: "number",
       renderCell: (params) => (
-        <Typography fontWeight="600" color={colors.grey[100]}>
-          {params.value.toLocaleString()}
+        <Typography sx={{ color: colors.grey[100], fontSize: "14px" }}>
+          {params.value}
         </Typography>
       )
     },
     {
-      field: "actions",
-      headerName: "Information",
-      width: 120,
-      sortable: false,
+      field: "clvDA",
+      headerName: "CLV (DA)",
+      width: 150,
       renderCell: (params) => (
-        <IconButton
-          size="small"
-          sx={{ color: colors.redAccent[600] }}
-          onClick={() => console.log("Info clicked for:", params.row.clientId)}
-        >
-          <InfoOutlinedIcon />
-        </IconButton>
+        <Typography sx={{ 
+          fontWeight: "600", 
+          color: colors.grey[100],
+          fontSize: "14px"
+        }}>
+          {params.value.toLocaleString()} DA
+        </Typography>
       )
     }
   ];
@@ -164,56 +227,92 @@ const TableClient = ({ filters }) => {
   return (
     <Box
       sx={{
-        backgroundColor: colors.grey[900],
-        borderRadius: "12px",
-        padding: "25px",
-        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)"
+        backgroundColor: colors.primary[400],
+        borderRadius: "8px",
+        padding: "24px",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)"
       }}
     >
-      <Box display="flex" alignItems="center" gap="10px" mb={3}>
-        <PeopleOutlineIcon sx={{ color: colors.redAccent[600], fontSize: "28px" }} />
-        <Typography variant="h4" fontWeight="bold" color={colors.grey[100]}>
+      {/* Header */}
+      <Box display="flex" alignItems="center" gap="10px" mb="20px">
+        <PeopleOutlineIcon sx={{ color: colors.redAccent[500], fontSize: "24px" }} />
+        <Typography variant="h4" fontWeight="600" color={colors.grey[100]}>
           Liste des Clients
         </Typography>
       </Box>
 
+      {/* DataGrid */}
       <Box
         sx={{
-          height: 500,
+          height: 600,
+          width: '100%',
           '& .MuiDataGrid-root': {
             border: 'none',
+            backgroundColor: 'transparent',
           },
           '& .MuiDataGrid-cell': {
-            borderBottom: `1px solid ${colors.grey[800]}`,
-            color: colors.grey[100]
+            borderBottom: `1px solid ${colors.primary[300]}`,
+            color: colors.grey[100],
+            fontSize: '14px',
+            display: 'flex',
+            alignItems: 'center',
           },
           '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: 'transparent',
-            borderBottom: `2px solid ${colors.grey[700]}`,
-            color: colors.grey[400],
+            backgroundColor: colors.primary[500],
+            borderBottom: `1px solid ${colors.primary[300]}`,
+            color: colors.grey[300],
             fontWeight: '600',
-            fontSize: '13px'
+            fontSize: '13px',
+          },
+          '& .MuiDataGrid-columnHeader': {
+            '&:focus, &:focus-within': {
+              outline: 'none',
+            },
+          },
+          '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within': {
+            outline: 'none',
           },
           '& .MuiDataGrid-virtualScroller': {
-            backgroundColor: 'transparent',
+            backgroundColor: colors.primary[400],
           },
           '& .MuiDataGrid-footerContainer': {
-            borderTop: `1px solid ${colors.grey[700]}`,
-            backgroundColor: 'transparent',
-            color: colors.grey[100]
+            borderTop: `1px solid ${colors.primary[300]}`,
+            backgroundColor: colors.primary[400],
+            color: colors.grey[100],
           },
-          '& .MuiDataGrid-row:hover': {
-            backgroundColor: colors.grey[800],
-          }
+          '& .MuiTablePagination-root': {
+            color: colors.grey[100],
+          },
+          '& .MuiTablePagination-selectIcon': {
+            color: colors.grey[100],
+          },
+          '& .MuiDataGrid-row': {
+            backgroundColor: colors.primary[400],
+            '&:hover': {
+              backgroundColor: colors.primary[500],
+            },
+          },
+          '& .MuiDataGrid-selectedRowCount': {
+            color: colors.grey[100],
+          },
         }}
       >
         <DataGrid
           rows={mockClients}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10, 25, 50]}
-          disableSelectionOnClick
-          autoHeight
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize: 100, page: 0 }
+            },
+          }}
+          pageSizeOptions={[25, 50, 100]}
+          disableRowSelectionOnClick
+          disableColumnMenu
+          sx={{
+            '& .MuiDataGrid-cellContent': {
+              width: '100%',
+            }
+          }}
         />
       </Box>
     </Box>
